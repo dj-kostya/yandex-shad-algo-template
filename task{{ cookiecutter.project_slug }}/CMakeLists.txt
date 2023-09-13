@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 #
 
 add_library({{ cookiecutter.task_name }}lib src/{{ cookiecutter.task_name }}.cpp src/{{ cookiecutter.task_name }}.h)
-set_target_properties({{ cookiecutter.task_name }}lib ROPERTIES
+set_target_properties({{ cookiecutter.task_name }}lib PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED YES
         CXX_EXTENSIONS NO)
