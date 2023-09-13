@@ -4,7 +4,7 @@
 ```
 brew install clang-format
 ```
-#
+# Сборка result.cpp
 ```
 python make_resul_cpp.py
 ```
