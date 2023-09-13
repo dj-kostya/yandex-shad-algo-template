@@ -1,0 +1,6 @@
+cmake*build**
+build_**
+.cache
+.idea
+compile_commands.json
+.DS_Store
