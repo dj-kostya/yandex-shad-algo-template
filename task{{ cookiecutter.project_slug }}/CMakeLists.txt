@@ -4,7 +4,7 @@ project({{ cookiecutter.task_name }})
 set(CMAKE_CXX_STANDARD 17)
 
 #
-# Lab3 library
+# {{ cookiecutter.task_name }} library
 #
 
 add_library({{ cookiecutter.task_name }}lib src/{{ cookiecutter.task_name }}.cpp src/{{ cookiecutter.task_name }}.h)
