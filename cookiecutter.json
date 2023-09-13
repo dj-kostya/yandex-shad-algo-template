@@ -1,0 +1,5 @@
+{
+  "task_idx": "1",
+  "project_slug": "{{ cookiecutter.task_idx.lower().replace(' ', '_') }}",
+  "task_name": "task{{ cookiecutter.project_slug }}"
+}
