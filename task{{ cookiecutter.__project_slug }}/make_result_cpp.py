@@ -9,7 +9,7 @@ MAIN_FILE = SRC_PATH / "main.cpp"
 
 TMP_FILE = SRC_PATH / "tmp.cpp"
 RESULT_FILE = SRC_PATH / "result.cpp"
-TASK_NAME = "{{ cookiecutter.task_name }}"
+TASK_NAME = "{{ cookiecutter.__task_name }}"
 
 HEADERS_FILE = SRC_PATH / f"{TASK_NAME}.h"
 CPP_FILE = SRC_PATH / f"{TASK_NAME}.cpp"

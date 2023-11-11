@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.26)
-project({{ cookiecutter.task_name }})
+project({{ cookiecutter.__task_name }})
 
 set(CMAKE_CXX_STANDARD 14)
 
 #
-# {{ cookiecutter.task_name }} library
+# {{ cookiecutter.__task_name }} library
 #
 
-add_library({{ cookiecutter.task_name }}lib src/{{ cookiecutter.task_name }}.cpp src/{{ cookiecutter.task_name }}.h)
-set_target_properties({{ cookiecutter.task_name }}lib PROPERTIES
+add_library({{ cookiecutter.__task_name }}lib src/{{ cookiecutter.__task_name }}.cpp src/{{ cookiecutter.__task_name }}.h)
+set_target_properties({{ cookiecutter.__task_name }}lib PROPERTIES
         CXX_STANDARD 14
         CXX_STANDARD_REQUIRED YES
         CXX_EXTENSIONS NO)
@@ -17,20 +17,20 @@ set_target_properties({{ cookiecutter.task_name }}lib PROPERTIES
 # Main executable
 #
 
-add_executable({{ cookiecutter.task_name }} src/main.cpp)
+add_executable({{ cookiecutter.__task_name }} src/main.cpp)
 
-add_dependencies({{ cookiecutter.task_name }}
-        {{ cookiecutter.task_name }}lib)
+add_dependencies({{ cookiecutter.__task_name }}
+        {{ cookiecutter.__task_name }}lib)
 
-target_link_libraries({{ cookiecutter.task_name }}
-        {{ cookiecutter.task_name }}lib)
+target_link_libraries({{ cookiecutter.__task_name }}
+        {{ cookiecutter.__task_name }}lib)
 
 #
 # Unit tests
 #
 add_executable(unittests
         src/tests/main.cpp
-        src/tests/{{ cookiecutter.task_name }}_unittest.cpp)
+        src/tests/{{ cookiecutter.__task_name }}_unittest.cpp)
 
 set_target_properties(unittests PROPERTIES
         CXX_STANDARD 14
@@ -41,10 +41,10 @@ target_include_directories(unittests PRIVATE
         "${PROJECT_SOURCE_DIR}/src")
 
 add_dependencies(unittests
-        {{ cookiecutter.task_name }}lib)
+        {{ cookiecutter.__task_name }}lib)
 
 target_link_libraries(unittests
-        {{ cookiecutter.task_name }}lib)
+        {{ cookiecutter.__task_name }}lib)
 
 #
 # GoogleTest - find in packages or download from github and compile on-the-fly.
