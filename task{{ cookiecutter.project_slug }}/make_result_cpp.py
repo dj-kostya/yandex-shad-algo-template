@@ -5,33 +5,33 @@ from pathlib import Path
 
 SRC_PATH = Path("src")
 
-MAIN_FILE = SRC_PATH / 'main.cpp'
+MAIN_FILE = SRC_PATH / "main.cpp"
 
-TMP_FILE = SRC_PATH / 'tmp.cpp'
-RESULT_FILE = SRC_PATH / 'result.cpp'
-TASK_NAME = '{{ cookiecutter.task_name }}'
+TMP_FILE = SRC_PATH / "tmp.cpp"
+RESULT_FILE = SRC_PATH / "result.cpp"
+TASK_NAME = "{{ cookiecutter.task_name }}"
 
-HEADERS_FILE = SRC_PATH / f'{TASK_NAME}.h'
-CPP_FILE = SRC_PATH / f'{TASK_NAME}.cpp'
+HEADERS_FILE = SRC_PATH / f"{TASK_NAME}.h"
+CPP_FILE = SRC_PATH / f"{TASK_NAME}.cpp"
 
-INCLUDE_RE = re.compile(r'#include ((<[^>]+>)|(\"[^\"]+\"))')
+INCLUDE_RE = re.compile(r"#include ((<[^>]+>)|(\"[^\"]+\"))")
 
 
 def build_result() -> str:
     result_content = ""
-    with open(HEADERS_FILE, 'r') as headers:
+    with open(HEADERS_FILE, "r") as headers:
         headers_content = headers.read()
         headers_content = headers_content.replace("#pragma once", "")
         result_content += headers_content
     result_content += "\n"
-    with open(CPP_FILE, 'r') as cpp:
+    with open(CPP_FILE, "r") as cpp:
         cpp_content = cpp.read()
-        cpp_content = cpp_content.replace(f"#include \"{TASK_NAME}.h\"", "")
+        cpp_content = cpp_content.replace(f'#include "{TASK_NAME}.h"', "")
         result_content += cpp_content
     result_content += "\n"
-    with open(MAIN_FILE, 'r') as main_cpp:
+    with open(MAIN_FILE, "r") as main_cpp:
         main_cpp_content = main_cpp.read()
-        main_cpp_content = main_cpp_content.replace(f"#include \"{TASK_NAME}.h\"", "")
+        main_cpp_content = main_cpp_content.replace(f'#include "{TASK_NAME}.h"', "")
         result_content += main_cpp_content
     return result_content
 
@@ -46,12 +46,12 @@ def move_all_includes_to_top(result_content: str) -> str:
 
 
 def write_content(result_content: str) -> None:
-    with open(TMP_FILE, 'w') as result:
+    with open(TMP_FILE, "w") as result:
         result.write(result_content)
 
 
 def apply_clang_format():
-    with open(RESULT_FILE, 'w') as f:
+    with open(RESULT_FILE, "w") as f:
         res = subprocess.run(["clang-format", str(TMP_FILE.absolute())], stdout=f)
 
 

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project({{ cookiecutter.task_name }})
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 #
 # {{ cookiecutter.task_name }} library
@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library({{ cookiecutter.task_name }}lib src/{{ cookiecutter.task_name }}.cpp src/{{ cookiecutter.task_name }}.h)
 set_target_properties({{ cookiecutter.task_name }}lib PROPERTIES
-        CXX_STANDARD 17
+        CXX_STANDARD 14
         CXX_STANDARD_REQUIRED YES
         CXX_EXTENSIONS NO)
 
@@ -33,7 +33,7 @@ add_executable(unittests
         src/tests/{{ cookiecutter.task_name }}_unittest.cpp)
 
 set_target_properties(unittests PROPERTIES
-        CXX_STANDARD 17
+        CXX_STANDARD 14
         CXX_STANDARD_REQUIRED YES
         CXX_EXTENSIONS NO)
 
