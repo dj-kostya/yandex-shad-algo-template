@@ -15,6 +15,7 @@ HEADERS_FILE = SRC_PATH / f"{TASK_NAME}.h"
 CPP_FILE = SRC_PATH / f"{TASK_NAME}.cpp"
 
 INCLUDE_RE = re.compile(r"#include ((<[^>]+>)|(\"[^\"]+\"))")
+FRIEND_TEST = re.compile(r"FRIEND_TEST\((.)*\);")
 
 
 def build_result() -> str:
@@ -37,8 +38,11 @@ def build_result() -> str:
 
 
 def move_all_includes_to_top(result_content: str) -> str:
+    result_content = result_content.replace('#include "gtest/gtest_prod.h"', "")
     includes = INCLUDE_RE.findall(result_content)
     all_includes = sorted([f"#include {include[0]}" for include in includes])
+    result_content = FRIEND_TEST.sub("", result_content)
+
     for incl in all_includes:
         result_content = result_content.replace(incl, "")
     includes_content = "\n".join(all_includes)

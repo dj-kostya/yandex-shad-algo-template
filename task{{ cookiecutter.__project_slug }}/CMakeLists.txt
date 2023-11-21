@@ -60,6 +60,12 @@ if (GTest_FOUND)
     target_link_libraries(unittests
             ${GTEST_LIBRARIES})
 
+    target_include_directories({{ cookiecutter.__task_name }}lib PRIVATE
+            ${GTEST_INCLUDE_DIRS})
+
+    target_link_libraries({{ cookiecutter.__task_name }}lib
+            ${GTEST_LIBRARIES})
+
 else ()
     message(STATUS "Fallback to googletest downloading on-the-fly.")
 
@@ -93,6 +99,13 @@ else ()
             "${CMAKE_CURRENT_BINARY_DIR}/googletest-src/include")
 
     target_link_libraries(unittests
+            gtest_main)
+
+    target_include_directories({{ cookiecutter.__task_name }}lib PRIVATE
+            "${CMAKE_CURRENT_BINARY_DIR}/googletest-src"
+            "${CMAKE_CURRENT_BINARY_DIR}/googletest-src/include")
+
+    target_link_libraries({{ cookiecutter.__task_name }}lib
             gtest_main)
 
 endif ()
